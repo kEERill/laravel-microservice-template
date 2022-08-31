@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ./.docker/develop/
+      dockerfile: Dockerfile
+    container_name: app
+    networks:
+      - app_network
+    volumes:
+      - ./src:/var/www/html
+
+  webserver:
+    image: nginx:1.17-alpine
+    container_name: webserver
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app_network
+    volumes:
+      - ./.docker/nginx:/etc/nginx/conf.d
+      - ./src:/var/www/html:rw
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: application
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - app_network
+    volumes:
+      - db_data:/var/lib/mysql
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local

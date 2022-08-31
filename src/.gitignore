@@ -1,0 +1,16 @@
+/node_modules
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/storage/worker.log
+/vendor
+supervisor.conf
+.env
+.env.testing
+/.vs
+.phpstorm.meta.php
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
