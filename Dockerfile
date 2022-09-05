@@ -2,22 +2,31 @@ ARG PHP_VERSION=8.1
 ARG COMPOSER_VERSION=2.4.1
 
 ###########################################
-# Composer
+# PHP dependencies
 ###########################################
 
-FROM composer:${COMPOSER_VERSION} AS composer
+FROM composer:${COMPOSER_VERSION} AS vendor
+
+WORKDIR /var/www/html
+
+COPY ./src/composer* ./
+
+RUN composer install \
+  --no-dev \
+  --no-interaction \
+  --prefer-dist \
+  --ignore-platform-reqs \
+  --optimize-autoloader \
+  --apcu-autoloader \
+  --ansi \
+  --no-scripts \
+  --audit
 
 ###########################################
 # Application
 ###########################################
 
-FROM php:${PHP_VERSION}-fpm-buster
-
-ENV COMPOSER_MEMORY_LIMIT='-1'
-
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-ENV COMPOSER_HOME="/tmp/composer"
+FROM php:${PHP_VERSION}-cli-buster
 
 # Prepend pipfail
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -96,7 +105,18 @@ WORKDIR /var/www/html
 # Change current user to www
 USER app_user:app_user
 
+COPY --chown=app_user:app_user ./src .
+COPY --from=vendor --chown=app_user:app_user /var/www/html/vendor vendor
+
+RUN cp .env.example .env
+
+ENV APP_ENV="production"
+ENV APP_KEY="base64:HVXQNIfAy8Deaj2b0bvTjwBCFvxTjCyK+pA60tRyDTs="
+ENV APP_DEBUG=false
+
+RUN php artisan optimize
+
 # Expose port 9000
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["php", "artisan", "octane:start", "--host=0.0.0.0", "--workers=4", "--port=9000", "--max-requests=500"]
