@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\Startup\StartupServiceProvider;
+
 return [
 
     /*
@@ -171,6 +173,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\SwaggerServiceProvider::class,
+        App\Providers\RouteServiceProvider::class
     ],
 
     /*
