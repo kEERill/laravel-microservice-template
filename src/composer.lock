@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2c88e1cb9ce0d19de8622353199d33f",
+    "content-hash": "47eb73d2cce060ad0848ae2e0c562f5b",
     "packages": [
         {
             "name": "brick/math",
@@ -1442,6 +1442,73 @@
                 }
             ],
             "time": "2022-08-28T14:45:39+00:00"
+        },
+        {
+            "name": "keerill/laravel-services-structure",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kEERill/laravel-services-structure.git",
+                "reference": "03cdf768df4c5bd7c128e90f1a8fdb4fc664341e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kEERill/laravel-services-structure/zipball/03cdf768df4c5bd7c128e90f1a8fdb4fc664341e",
+                "reference": "03cdf768df4c5bd7c128e90f1a8fdb4fc664341e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KEERill\\ServiceStructure\\ServiceStructureServiceProvider"
+                    ],
+                    "aliases": {
+                        "ServiceStructure": "KEERill\\ServiceStructure\\Facades\\ServiceStructure"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KEERill\\ServiceStructure\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kEERill",
+                    "email": "kirill.popkov.work@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package laravel-services-structure",
+            "homepage": "https://github.com/keerill/laravel-services-structure",
+            "keywords": [
+                "kEERill",
+                "laravel",
+                "laravel-services-structure"
+            ],
+            "support": {
+                "issues": "https://github.com/kEERill/laravel-services-structure/issues",
+                "source": "https://github.com/kEERill/laravel-services-structure/tree/v1.0.0"
+            },
+            "time": "2022-09-06T15:45:58+00:00"
         },
         {
             "name": "kriswallsmith/buzz",
@@ -3782,6 +3849,65 @@
                 }
             ],
             "time": "2022-06-02T20:28:47+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/09f80fa240d44fafb1c70657c74ee44ffa929357",
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.12.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-28T14:29:26+00:00"
         },
         {
             "name": "swagger-api/swagger-ui",

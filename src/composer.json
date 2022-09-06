@@ -16,6 +16,7 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^7.2",
+        "keerill/laravel-services-structure": "^1.0",
         "kriswallsmith/buzz": "^1.1",
         "laravel/framework": "^9.19",
         "laravel/octane": "^1.3",
