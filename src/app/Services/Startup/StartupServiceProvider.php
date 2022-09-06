@@ -2,47 +2,28 @@
 
 namespace App\Services\Startup;
 
-use Illuminate\Support\ServiceProvider;
 use App\Services\Startup\Domain\Subservices\StartupSubservice;
 use App\Services\Startup\Infrastructure\Contracts\GetStartupMessageInterface;
+use KEERill\ServiceStructure\Services\AbstractServiceProvider;
+use KEERill\ServiceStructure\Services\ServiceConfigurator;
 
-final class StartupServiceProvider extends ServiceProvider
+final class StartupServiceProvider extends AbstractServiceProvider
 {
     /**
-     * @var array<class-string, class-string[]>
+     * @var array<class-string, class-string>
      */
     protected array $subservices = [
-        StartupSubservice::class => [
-            GetStartupMessageInterface::class
-        ]
+        GetStartupMessageInterface::class => StartupSubservice::class
     ];
 
     /**
+     * @param ServiceConfigurator $serviceConfigurator
      * @return void
      */
-    public function register(): void
+    protected function configureService(ServiceConfigurator $serviceConfigurator): void
     {
-        $this->registerSubservices($this->subservices);
-    }
-
-    /**
-     * @return void
-     */
-    public function boot(): void
-    {
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
-    }
-
-    /**
-     * @param array $subservices
-     * @return void
-     */
-    public function registerSubservices(array $subservices): void
-    {
-        foreach ($subservices as $subservice => $interfaces) {
-            foreach ($interfaces as $interface) {
-                $this->app->bind($interface, $subservice);
-            }
-        }
+        $serviceConfigurator
+            ->usingSubservices($this->subservices)
+            ->usingRoutes();
     }
 }
